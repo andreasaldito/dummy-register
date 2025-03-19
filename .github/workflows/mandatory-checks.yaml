@@ -1,0 +1,22 @@
+name: Mandatory check 
+
+on:
+  push: 
+    branches: 
+      - main #your default branch
+      - sprint/*
+  pull_request:
+    branches:
+      - main #please matched it with you main/master branch
+      - sprint/*
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  quality-check:
+    uses: siloamhospitals/platform-actions/.github/workflows/quality-check-go-1-23-3.yml@main
+    secrets: inherit
+  security-check:
+    uses: siloamhospitals/platform-actions/.github/workflows/security-check-golang.yml@main
+    secrets: inherit
